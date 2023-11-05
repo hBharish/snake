@@ -4,7 +4,6 @@ import random
 
 # Set up the game board
 WIDTH, HEIGHT = 20, 20
-board = [[0] * WIDTH for _ in range(HEIGHT)]
 
 # Initialize the snake
 snake = [(0, 0)]
@@ -60,24 +59,23 @@ if st.button("Restart"):
     food = (random.randint(0, WIDTH - 1), random.randint(0, HEIGHT - 1))
     game_over = False
 
-with st.beta_container():
-    st.write("Use the arrow keys to control the snake.")
-    st.write("Eat the food to grow and score points.")
-    st.write("Avoid running into the walls or yourself.")
+st.write("Use the arrow keys to control the snake.")
+st.write("Eat the food to grow and score points.")
+st.write("Avoid running into the walls or yourself.")
 
-    # Game loop
-    while not game_over:
-        update_game()
+# Main game loop
+while not game_over:
+    update_game()
 
-        # Display the game board
-        for y in range(HEIGHT):
-            for x in range(WIDTH):
-                if (x, y) in snake:
-                    st.write("🟩", end="")
-                elif (x, y) == food:
-                    st.write("🍎", end="")
-                else:
-                    st.write("⬜️", end="")
-            st.write("")
+    # Display the game board
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+            if (x, y) in snake:
+                st.write("🟩", end="")
+            elif (x, y) == food:
+                st.write("🍎", end="")
+            else:
+                st.write("⬜️", end="")
+        st.write("")
 
-        time.sleep(0.1)
+    time.sleep(0.1)
